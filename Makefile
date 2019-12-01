@@ -15,7 +15,9 @@ SRC		=	src/push_swap.c			\
 			src/push_list.c			\
 			src/rotate_begin_list.c	\
 			src/rotate_end_list.c	\
-			src/bubble_sort.c
+			src/verbose.c			\
+			src/bubble_sort.c		\
+			src/insertion_sort.c
 
 CFLAGS	=	-I./include/ -Wall -Wextra
 

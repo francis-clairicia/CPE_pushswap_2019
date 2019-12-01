@@ -11,6 +11,12 @@
 #include "my.h"
 #include "mylist.h"
 
+typedef struct action
+{
+    list_t **list;
+    int verbose;
+} action_t;
+
 void push_swap(int nb_int, int *nb_list, int verbose);
 
 void swap_list_a(list_t **l_a, list_t **actions);
@@ -34,7 +40,9 @@ void rotate_end_both(list_t **l_a, list_t **l_b, list_t **actions);
 int list_sorted(list_t *list);
 int list_reverse_sorted(list_t *list);
 void print_list(list_t *list);
+void print_verbose(list_t **l_a, list_t **l_b, action_t *actions);
 
-void bubble_sort(list_t **l_a, list_t **l_b, list_t **actions, int verbose);
+void bubble_sort(list_t **l_a, list_t **l_b, action_t *actions);
+void insertion_sort(list_t **l_a, list_t **l_b, action_t *actions);
 
 #endif

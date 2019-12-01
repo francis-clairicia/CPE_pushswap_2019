@@ -35,18 +35,10 @@ static void sort_int_list(list_t **l_a, list_t **l_b, list_t **actions)
         push_to_list_b(l_a, l_b, actions);
 }
 
-void bubble_sort(list_t **l_a, list_t **l_b, list_t **actions, int verbose)
+void bubble_sort(list_t **l_a, list_t **l_b, action_t *actions)
 {
     while (continue_sort_list(l_a, l_b)) {
-        sort_int_list(l_a, l_b, actions);
-        if (verbose) {
-            my_putstr((char *)(my_node(*actions, -1)->data));
-            my_putchar('\n');
-            my_putstr("l_a: ");
-            print_list(*l_a);
-            my_putstr("l_b: ");
-            print_list(*l_b);
-            my_putchar('\n');
-        }
+        sort_int_list(l_a, l_b, actions->list);
+        print_verbose(l_a, l_b, actions);
     }
 }
