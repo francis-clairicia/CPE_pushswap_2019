@@ -1,0 +1,38 @@
+/*
+** EPITECH PROJECT, 2019
+** CPE_pushswap_2019
+** File description:
+** push_swap.c
+*/
+
+#include "push_swap.h"
+
+static list_t *my_int_arr_to_list(int nb_int, int *nb_list)
+{
+    list_t *list = NULL;
+    int i = 0;
+
+    while (i < nb_int) {
+        my_append_to_list(&list, nb_list[i]);
+        i += 1;
+    }
+    return (list);
+}
+
+void push_swap(int nb_int, int *nb_list, int verbose)
+{
+    list_t *l_a = my_int_arr_to_list(nb_int, nb_list);
+    list_t *l_b = NULL;
+    list_t *actions = NULL;
+    int str_size = 0;
+    char *actions_to_print;
+
+    bubble_sort(&l_a, &l_b, &actions, verbose);
+    actions_to_print = my_concat_str_list(actions, ' ', &str_size);
+    write(1, actions_to_print, str_size);
+    my_putchar('\n');
+    my_free_list(&l_a, 0);
+    my_free_list(&l_b, 0);
+    my_free_list(&actions, 1);
+    free(actions_to_print);
+}
