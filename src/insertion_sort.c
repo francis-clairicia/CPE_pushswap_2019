@@ -17,6 +17,10 @@ static void switch_to_b(list_t **l_a, list_t **l_b,
         }
         push_to_list_b(l_a, l_b, actions->list);
         print_verbose(l_a, l_b, actions);
+        if ((*l_b)->next != NULL && (*l_b)->data < (*l_b)->next->data) {
+            swap_list_b(l_b, actions->list);
+            print_verbose(l_a, l_b, actions);
+        }
     }
 }
 
