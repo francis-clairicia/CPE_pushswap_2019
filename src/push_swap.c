@@ -7,21 +7,21 @@
 
 #include "push_swap.h"
 
-static list_t *my_int_arr_to_list(int nb_int, int *nb_list)
+static list_t *my_params_to_list(int nb_int, char **nb_list)
 {
     list_t *list = NULL;
     int i = 0;
 
     while (i < nb_int) {
-        my_append_to_list(&list, nb_list[i]);
+        my_append_to_list(&list, my_getnbr(nb_list[i]));
         i += 1;
     }
     return (list);
 }
 
-void push_swap(int nb_int, int *nb_list, int verbose)
+void push_swap(int nb_int, char **nb_list, int verbose)
 {
-    list_t *l_a = my_int_arr_to_list(nb_int, nb_list);
+    list_t *l_a = my_params_to_list(nb_int, nb_list);
     list_t *l_b = NULL;
     list_t *action_list = NULL;
     action_t actions = {&action_list, verbose};
@@ -29,10 +29,7 @@ void push_swap(int nb_int, int *nb_list, int verbose)
     char *actions_to_print;
 
     if (nb_int > 1) {
-        if (nb_int <= 5000)
-            bubble_sort(&l_a, &l_b, &actions);
-        else
-            insertion_sort(&l_a, &l_b, &actions);
+        insertion_sort(&l_a, &l_b, &actions);
     } actions_to_print = my_concat_str_list(action_list, ' ', &str_size);
     write(1, actions_to_print, str_size);
     my_putchar('\n');

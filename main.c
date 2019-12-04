@@ -31,19 +31,8 @@ static int args_is_num(int ac, char **av)
     return (1);
 }
 
-static void str_arr_to_int_arr(int ac, char **av, int *nb_list)
-{
-    int i = 0;
-
-    while (i < ac) {
-        nb_list[i] = my_getnbr(av[i]);
-        i += 1;
-    }
-}
-
 int main(int ac, char **av)
 {
-    int nb_list[ac];
     int verbose;
     int beginning;
 
@@ -55,7 +44,6 @@ int main(int ac, char **av)
     beginning = verbose + 1;
     if (!args_is_num(ac - beginning, &av[beginning]))
         return (84);
-    str_arr_to_int_arr(ac - beginning, &av[beginning], nb_list);
-    push_swap(ac - beginning, nb_list, verbose);
+    push_swap(ac - beginning, &av[beginning], verbose);
     return (0);
 }

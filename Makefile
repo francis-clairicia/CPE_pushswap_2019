@@ -8,7 +8,6 @@
 MAIN	=	main.c
 
 SRC		=	src/push_swap.c			\
-			src/compare_functions.c	\
 			src/print_list.c		\
 			src/swap_list.c			\
 			src/swap_actions.c		\
@@ -16,7 +15,6 @@ SRC		=	src/push_swap.c			\
 			src/rotate_begin_list.c	\
 			src/rotate_end_list.c	\
 			src/verbose.c			\
-			src/bubble_sort.c		\
 			src/insertion_sort.c
 
 CFLAGS	=	-I./include/ -Wall -Wextra
