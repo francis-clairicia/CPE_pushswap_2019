@@ -13,12 +13,12 @@
 
 void my_putchar(char c);
 int my_isneg(int nb);
-int my_put_nbr(int nb);
+int my_put_nbr(long nb);
 int my_putnbr_base(int nbr, char const *base);
 void my_swap(int *a, int *b);
 int my_putstr(char const *str);
 int my_strlen(char const *str);
-int my_getnbr(char const *str);
+long my_getnbr(char const *str);
 int my_getnbr_base(char const *str, char const *base);
 void my_sort_int_array(int *array, int size);
 int my_compute_power_rec(int nb, int p);

@@ -24,8 +24,6 @@ static void put_all_in_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 
 static void sort_list_a(list_t **l_a, list_t **l_b, action_t *actions)
 {
-    int nb_rotate = 0;
-
     while ((*l_a)->next != NULL && (*l_a)->data > (*l_a)->next->data) {
         swap_list_a(l_a, l_b, actions);
         if ((*l_a)->next->next == NULL)
@@ -33,14 +31,12 @@ static void sort_list_a(list_t **l_a, list_t **l_b, action_t *actions)
         if ((*l_a)->next->data <= (*l_a)->next->next->data)
             continue;
         rotate_begin_list_a(l_a, l_b, actions);
-        nb_rotate += 1;
+        actions->nb_rotate += 1;
     }
-    if (nb_rotate <= actions->nb_int / 2) {
-        while (nb_rotate-- > 0)
-            rotate_end_list_a(l_a, l_b, actions);
-    } else {
-        while (nb_rotate++ <= actions->nb_int)
-            rotate_begin_list_a(l_a, l_b, actions);
+    while (actions->nb_rotate > 0 && (*l_b != NULL)
+    && (*l_a)->data >= (*l_b)->data) {
+        rotate_end_list_a(l_a, l_b, actions);
+        actions->nb_rotate -= 1;
     }
 }
 
@@ -50,5 +46,9 @@ void insertion_sort(list_t **l_a, list_t **l_b, action_t *actions)
     while (*l_b != NULL) {
         push_to_list_a(l_a, l_b, actions);
         sort_list_a(l_a, l_b, actions);
+    }
+    while (actions->nb_rotate > 0) {
+        rotate_end_list_a(l_a, l_b, actions);
+        actions->nb_rotate -= 1;
     }
 }

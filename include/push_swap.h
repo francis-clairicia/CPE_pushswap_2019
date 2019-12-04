@@ -16,6 +16,7 @@ typedef struct action
     int nb_int;
     list_t **list;
     int verbose;
+    int nb_rotate;
 } action_t;
 
 void push_swap(int nb_int, char **nb_list, int verbose);

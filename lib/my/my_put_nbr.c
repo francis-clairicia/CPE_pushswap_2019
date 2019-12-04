@@ -5,14 +5,10 @@
 ** Display number entered as parameter
 */
 
-#include <my.h>
+#include "my.h"
 
-int my_put_nbr(int nb)
+int my_put_nbr(long nb)
 {
-    if (nb == -2147483648) {
-        my_putstr("-2147483648");
-        return (0);
-    }
     if (nb < 0) {
         nb = -nb;
         my_putchar('-');
