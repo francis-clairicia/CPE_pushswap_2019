@@ -47,8 +47,15 @@ void insertion_sort(list_t **l_a, list_t **l_b, action_t *actions)
         push_to_list_a(l_a, l_b, actions);
         sort_list_a(l_a, l_b, actions);
     }
-    while (actions->nb_rotate > 0) {
-        rotate_end_list_a(l_a, l_b, actions);
-        actions->nb_rotate -= 1;
+    if (actions->nb_rotate <= (actions->nb_int) / 2) {
+        while (actions->nb_rotate > 0) {
+            rotate_end_list_a(l_a, l_b, actions);
+            actions->nb_rotate -= 1;
+        }
+    } else {
+        while (actions->nb_rotate < actions->nb_int) {
+            rotate_begin_list_a(l_a, l_b, actions);
+            actions->nb_rotate += 1;
+        }
     }
 }
