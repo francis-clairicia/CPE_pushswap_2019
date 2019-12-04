@@ -33,6 +33,7 @@ static int args_is_num(int ac, char **av)
 
 int main(int ac, char **av)
 {
+    list_t *list;
     int verbose;
     int beginning;
 
@@ -44,6 +45,7 @@ int main(int ac, char **av)
     beginning = verbose + 1;
     if (!args_is_num(ac - beginning, &av[beginning]))
         return (84);
-    push_swap(ac - beginning, &av[beginning], verbose);
+    list = push_swap(ac - beginning, &av[beginning], verbose);
+    my_free_list(&list, 0);
     return (0);
 }

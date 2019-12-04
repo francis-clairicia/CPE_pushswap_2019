@@ -10,7 +10,6 @@ MAIN	=	main.c
 SRC		=	src/push_swap.c			\
 			src/print_list.c		\
 			src/swap_list.c			\
-			src/swap_actions.c		\
 			src/push_list.c			\
 			src/rotate_begin_list.c	\
 			src/rotate_end_list.c	\
