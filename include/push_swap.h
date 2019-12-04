@@ -13,6 +13,7 @@
 
 typedef struct action
 {
+    int nb_int;
     list_t **list;
     int verbose;
 } action_t;

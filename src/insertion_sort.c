@@ -7,7 +7,7 @@
 
 #include "push_swap.h"
 
-void insertion_sort(list_t **l_a, list_t **l_b, action_t *actions)
+static void put_all_in_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 {
     while ((*l_a)->next != (*l_a)->previous) {
         if ((*l_a)->previous->data <= (*l_a)->data)
@@ -20,9 +20,35 @@ void insertion_sort(list_t **l_a, list_t **l_b, action_t *actions)
     }
     if ((*l_a)->data > (*l_a)->next->data)
         swap_list_a(l_a, l_b, actions);
+}
+
+static void sort_list_a(list_t **l_a, list_t **l_b, action_t *actions)
+{
+    int nb_rotate = 0;
+
+    while ((*l_a)->next != NULL && (*l_a)->data > (*l_a)->next->data) {
+        swap_list_a(l_a, l_b, actions);
+        if ((*l_a)->next->next == NULL)
+            continue;
+        if ((*l_a)->next->data <= (*l_a)->next->next->data)
+            continue;
+        rotate_begin_list_a(l_a, l_b, actions);
+        nb_rotate += 1;
+    }
+    if (nb_rotate <= actions->nb_int / 2) {
+        while (nb_rotate-- > 0)
+            rotate_end_list_a(l_a, l_b, actions);
+    } else {
+        while (nb_rotate++ <= actions->nb_int)
+            rotate_begin_list_a(l_a, l_b, actions);
+    }
+}
+
+void insertion_sort(list_t **l_a, list_t **l_b, action_t *actions)
+{
+    put_all_in_list_b(l_a, l_b, actions);
     while (*l_b != NULL) {
         push_to_list_a(l_a, l_b, actions);
-        if ((*l_a)->data > (*l_a)->next->data)
-            swap_list_a(l_a, l_b, actions);
+        sort_list_a(l_a, l_b, actions);
     }
 }

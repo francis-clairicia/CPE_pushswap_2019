@@ -9,20 +9,24 @@
 
 static void put_to_second_list(list_t **first, list_t **second)
 {
-    my_put_in_list(second, (my_node(*first, 0)->data));
+    my_put_in_list(second, (*first)->data);
     my_delete_node(first, 0, 0);
 }
 
 void push_to_list_a(list_t **l_a, list_t **l_b, action_t *actions)
 {
+    char *action = "pa";
+
     put_to_second_list(l_b, l_a);
-    my_append_to_list(actions->list, (long)my_strdup("pa"));
+    my_append_to_list(actions->list, (long)action);
     print_verbose(l_a, l_b, actions);
 }
 
 void push_to_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 {
+    char *action = "pb";
+
     put_to_second_list(l_a, l_b);
-    my_append_to_list(actions->list, (long)my_strdup("pb"));
+    my_append_to_list(actions->list, (long)action);
     print_verbose(l_a, l_b, actions);
 }

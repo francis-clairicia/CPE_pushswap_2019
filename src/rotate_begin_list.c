@@ -15,22 +15,28 @@ static void rotate_toward_beginning(list_t **list)
 
 void rotate_begin_list_a(list_t **l_a, list_t **l_b, action_t *actions)
 {
+    char *action = "ra";
+
     rotate_toward_beginning(l_a);
-    my_append_to_list(actions->list, (long)my_strdup("ra"));
+    my_append_to_list(actions->list, (long)action);
     print_verbose(l_a, l_b, actions);
 }
 
 void rotate_begin_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 {
+    char *action = "rb";
+
     rotate_toward_beginning(l_b);
-    my_append_to_list(actions->list, (long)my_strdup("rb"));
+    my_append_to_list(actions->list, (long)action);
     print_verbose(l_a, l_b, actions);
 }
 
 void rotate_begin_both(list_t **l_a, list_t **l_b, action_t *actions)
 {
+    char *action = "rr";
+
     rotate_toward_beginning(l_a);
     rotate_toward_beginning(l_b);
-    my_append_to_list(actions->list, (long)my_strdup("rr"));
+    my_append_to_list(actions->list, (long)action);
     print_verbose(l_a, l_b, actions);
 }
