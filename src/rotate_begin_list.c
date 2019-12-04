@@ -7,29 +7,30 @@
 
 #include "push_swap.h"
 
-static int rotate_toward_beginning(list_t **list)
+static void rotate_toward_beginning(list_t **list)
 {
-    if (my_list_size(*list) < 2)
-        return (0);
-    my_append_to_list(list, (my_node(*list, 0))->data);
+    my_append_to_list(list, (*list)->data);
     my_delete_node(list, 0, 0);
-    return (1);
 }
 
-void rotate_begin_list_a(list_t **l_a, list_t **actions)
+void rotate_begin_list_a(list_t **l_a, list_t **l_b, action_t *actions)
 {
-    if (rotate_toward_beginning(l_a))
-        my_append_to_list(actions, (long)my_strdup("ra"));
+    rotate_toward_beginning(l_a);
+    my_append_to_list(actions->list, (long)my_strdup("ra"));
+    print_verbose(l_a, l_b, actions);
 }
 
-void rotate_begin_list_b(list_t **l_b, list_t **actions)
+void rotate_begin_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 {
-    if (rotate_toward_beginning(l_b))
-        my_append_to_list(actions, (long)my_strdup("rb"));
+    rotate_toward_beginning(l_b);
+    my_append_to_list(actions->list, (long)my_strdup("rb"));
+    print_verbose(l_a, l_b, actions);
 }
 
-void rotate_begin_both(list_t **l_a, list_t **l_b, list_t **actions)
+void rotate_begin_both(list_t **l_a, list_t **l_b, action_t *actions)
 {
-    if (rotate_toward_beginning(l_a) || rotate_toward_beginning(l_b))
-        my_append_to_list(actions, (long)my_strdup("rr"));
+    rotate_toward_beginning(l_a);
+    rotate_toward_beginning(l_b);
+    my_append_to_list(actions->list, (long)my_strdup("rr"));
+    print_verbose(l_a, l_b, actions);
 }

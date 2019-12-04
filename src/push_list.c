@@ -7,23 +7,22 @@
 
 #include "push_swap.h"
 
-static int put_to_second_list(list_t **first, list_t **second)
+static void put_to_second_list(list_t **first, list_t **second)
 {
-    if (*first == NULL)
-        return (0);
     my_put_in_list(second, (my_node(*first, 0)->data));
     my_delete_node(first, 0, 0);
-    return (1);
 }
 
-void push_to_list_a(list_t **l_a, list_t **l_b, list_t **actions)
+void push_to_list_a(list_t **l_a, list_t **l_b, action_t *actions)
 {
-    if (put_to_second_list(l_b, l_a))
-        my_append_to_list(actions, (long)my_strdup("pa"));
+    put_to_second_list(l_b, l_a);
+    my_append_to_list(actions->list, (long)my_strdup("pa"));
+    print_verbose(l_a, l_b, actions);
 }
 
-void push_to_list_b(list_t **l_a, list_t **l_b, list_t **actions)
+void push_to_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 {
-    if (put_to_second_list(l_a, l_b))
-        my_append_to_list(actions, (long)my_strdup("pb"));
+    put_to_second_list(l_a, l_b);
+    my_append_to_list(actions->list, (long)my_strdup("pb"));
+    print_verbose(l_a, l_b, actions);
 }

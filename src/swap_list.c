@@ -20,21 +20,24 @@ static void swap_first_two_elements(list_t **list)
     second_node->data = data;
 }
 
-void swap_list_a(list_t **l_a, list_t **actions)
+void swap_list_a(list_t **l_a, list_t **l_b, action_t *actions)
 {
     swap_first_two_elements(l_a);
-    my_append_to_list(actions, (long)my_strdup("sa"));
+    my_append_to_list(actions->list, (long)my_strdup("sa"));
+    print_verbose(l_a, l_b, actions);
 }
 
-void swap_list_b(list_t **l_b, list_t **actions)
+void swap_list_b(list_t **l_a, list_t **l_b, action_t *actions)
 {
     swap_first_two_elements(l_b);
-    my_append_to_list(actions, (long)my_strdup("sb"));
+    my_append_to_list(actions->list, (long)my_strdup("sb"));
+    print_verbose(l_a, l_b, actions);
 }
 
-void swap_both(list_t **l_a, list_t **l_b, list_t **actions)
+void swap_both(list_t **l_a, list_t **l_b, action_t *actions)
 {
     swap_first_two_elements(l_a);
     swap_first_two_elements(l_b);
-    my_append_to_list(actions, (long)my_strdup("sc"));
+    my_append_to_list(actions->list, (long)my_strdup("sc"));
+    print_verbose(l_a, l_b, actions);
 }
