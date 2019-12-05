@@ -34,7 +34,7 @@ static void sort_list_a(list_t **l_a, list_t **l_b, action_t *actions)
         actions->nb_rotate += 1;
     }
     while (actions->nb_rotate > 0 && (*l_b != NULL)
-    && (*l_a)->data >= (*l_b)->data) {
+    && (*l_a)->data >= (*l_b)->data && (*l_a)->previous->data > (*l_b)->data) {
         rotate_end_list_a(l_a, l_b, actions);
         actions->nb_rotate -= 1;
     }

@@ -9,8 +9,10 @@
 
 static void rotate_toward_end(list_t **list)
 {
-    my_put_in_list(list, (*list)->previous->data);
+    long nb = (*list)->previous->data;
+
     my_delete_node(list, -1, 0);
+    my_put_in_list(list, nb);
 }
 
 void rotate_end_list_a(list_t **l_a, list_t **l_b, action_t *actions)

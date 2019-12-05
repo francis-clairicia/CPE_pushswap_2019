@@ -9,8 +9,10 @@
 
 static void rotate_toward_beginning(list_t **list)
 {
-    my_append_to_list(list, (*list)->data);
+    long nb = (*list)->data;
+
     my_delete_node(list, 0, 0);
+    my_append_to_list(list, nb);
 }
 
 void rotate_begin_list_a(list_t **l_a, list_t **l_b, action_t *actions)

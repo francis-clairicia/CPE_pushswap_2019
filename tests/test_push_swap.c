@@ -11,8 +11,8 @@
 
 Test(push_swap, sort_a_list_of_simple_numbers)
 {
-    char *numbers[] = {"2", "3", "1"};
-    int nb_int = 3;
+    char *numbers[] = {"2", "1", "6", "3", "5", "1", "8", "7", "4"};
+    int nb_int = 9;
     list_t *sorted_list = NULL;
     list_t *node = NULL;
 
