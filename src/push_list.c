@@ -9,8 +9,10 @@
 
 static void put_to_second_list(list_t **first, list_t **second)
 {
-    my_put_in_list(second, (*first)->data);
+    long nb = (*first)->data;
+
     my_delete_node(first, 0, 0);
+    my_put_in_list(second, nb);
 }
 
 void push_to_list_a(list_t **l_a, list_t **l_b, action_t *actions)
