@@ -20,7 +20,7 @@ typedef struct action
     int nb_rotate;
 } action_t;
 
-list_t *push_swap(int nb_int, char **nb_list, int verbose);
+void push_swap(list_t **l_a, int nb_int, int verbose);
 
 void swap_list_a(list_t **l_a, list_t **l_b, action_t *actions);
 void swap_list_b(list_t **l_a, list_t **l_b, action_t *actions);

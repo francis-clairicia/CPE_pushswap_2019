@@ -31,6 +31,18 @@ static int args_is_num(int ac, char **av)
     return (1);
 }
 
+static list_t *my_params_to_list(int nb_int, char **nb_list)
+{
+    list_t *list = NULL;
+    int i = 0;
+
+    while (i < nb_int) {
+        my_append_to_list(&list, my_getnbr(nb_list[i]));
+        i += 1;
+    }
+    return (list);
+}
+
 int main(int ac, char **av)
 {
     list_t *list;
@@ -45,7 +57,8 @@ int main(int ac, char **av)
     beginning = verbose + 1;
     if (!args_is_num(ac - beginning, &av[beginning]))
         return (84);
-    list = push_swap(ac - beginning, &av[beginning], verbose);
+    list = my_params_to_list(ac - beginning, &av[beginning]);
+    push_swap(&list, ac - beginning, verbose);
     my_free_list(&list, 0);
     return (0);
 }

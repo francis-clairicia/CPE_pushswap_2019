@@ -7,16 +7,16 @@
 
 #include "push_swap.h"
 
-static list_t *my_params_to_list(int nb_int, char **nb_list)
+static int list_sorted(list_t *list, int nb_int)
 {
-    list_t *list = NULL;
-    int i = 0;
-
-    while (i < nb_int) {
-        my_append_to_list(&list, my_getnbr(nb_list[i]));
-        i += 1;
+    if (nb_int == 1)
+        return (1);
+    while (list->next != NULL) {
+        if (list->data > list->next->data)
+            return (0);
+        list = list->next;
     }
-    return (list);
+    return (1);
 }
 
 static void print_actions(list_t **actions)
@@ -30,16 +30,14 @@ static void print_actions(list_t **actions)
     my_free_list(actions, 0);
 }
 
-list_t *push_swap(int nb_int, char **nb_list, int verbose)
+void push_swap(list_t **l_a, int nb_int, int verbose)
 {
-    list_t *l_a = my_params_to_list(nb_int, nb_list);
     list_t *l_b = NULL;
     list_t *action_list = NULL;
     action_t actions = {&action_list, nb_int, 0, verbose, 0};
 
-    if (nb_int > 1)
-        insertion_sort(&l_a, &l_b, &actions);
+    if (!list_sorted(*l_a, nb_int))
+        insertion_sort(l_a, &l_b, &actions);
     print_actions(&action_list);
     my_free_list(&l_b, 0);
-    return (l_a);
 }
